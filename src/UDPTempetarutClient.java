@@ -32,7 +32,7 @@ public class UDPTempetarutClient {
     }
     private String temperaturenErzeugt()
     {
-        if(temperatur>=30.0)
+        /*if(temperatur>=30.0)
         {
             temperatur=round((temperatur - 0.1),1);
             line="Aktuelle Temperatur : " + temperatur;
@@ -57,15 +57,25 @@ public class UDPTempetarutClient {
                     temperatur=round((temperatur - 0.1),1);
                     line="Aktuelle Temperatur : " + temperatur;
                 }
-            }
+            }*/
+      for(int i=0;i<10;i++)
+      {
+          line="Werte " + String.valueOf(i);
+
+      }
 
 
         return line;
     }
     private void send(String message)
     {
-       try{ InetAddress ip=InetAddress.getLocalHost();
-       buffer =message.getBytes();
+       try{
+
+         //  InetAddress ip=InetAddress.getLocalHost();
+          // InetAddress ip=InetAddress.getLocalHost("localhost");
+           InetAddress ip = InetAddress.getByName("192.168.2.115");
+
+           buffer =message.getBytes();
        DatagramPacket packetsend=new DatagramPacket(buffer,buffer.length,ip,Constants.PORT);
        socket.send(packetsend);
        }
@@ -80,8 +90,8 @@ public class UDPTempetarutClient {
 
     }
     private void connecting()
-    {
-        int a=1000000;
+    {/*
+        int a=10;
         while (a>0)
         {
             String line = temperaturenErzeugt();
@@ -91,6 +101,16 @@ public class UDPTempetarutClient {
                 break;
             }
             a--;
+        }*/
+        for(int i=0;i<1000000;i++)
+        {
+            line="Werte Temperatur" + String.valueOf(i+1);
+            send(line);
+            if (line.equals(Constants.Stop))
+            {
+                break;
+            }
+
         }
     }
 

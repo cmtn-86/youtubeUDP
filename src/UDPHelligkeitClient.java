@@ -29,15 +29,18 @@ public class UDPHelligkeitClient {
 
     }
     private String helligkeitErzeugt()
-    {
+    {/*
         Random  zahlfurhelligkeit= new Random();
         int helligkeit=zahlfurhelligkeit.nextInt();
-        line="helligketi % prozent ";
+        int prozent=helligkeit%100;
+        line=" helligketi % prozent " + String.valueOf(prozent);*/
         return line;
     }
     private void send(String message)
     {
-        try{ InetAddress ip=InetAddress.getLocalHost();
+        try{ //InetAddress ip=InetAddress.getLocalHost();
+            InetAddress ip = InetAddress.getByName("192.168.2.115");
+
             buffer =message.getBytes();
             DatagramPacket packetsend=new DatagramPacket(buffer,buffer.length,ip,Constants.PORT);
             socket.send(packetsend);
@@ -54,17 +57,27 @@ public class UDPHelligkeitClient {
     }
     private void connecting()
     {
-        int a=10000000;
-        while (a>0)
-        {
-            String line = helligkeitErzeugt();
-            send(line);
-            if (line.equals(Constants.Stop))
+       // int a=10000000;
+        //while (a>0)
+        //{
+            //String line = helligkeitErzeugt();
+            for(int i=0;i<1000000;i++)
             {
-                break;
+                line="Werte  Helligkeit : " + String.valueOf(i+1);
+                send(line);
+                if (line.equals(Constants.Stop))
+                {
+                    break;
+                }
+
             }
-            a--;
-        }
+            //send(line);
+            //if (line.equals(Constants.Stop))
+           // {
+           //     break;
+           // }
+            //a--;
+
     }
 
     private void log(String message)
