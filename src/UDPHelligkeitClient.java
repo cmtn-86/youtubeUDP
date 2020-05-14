@@ -38,8 +38,9 @@ public class UDPHelligkeitClient {
     }
     private void send(String message)
     {
-        try{ //InetAddress ip=InetAddress.getLocalHost();
-            InetAddress ip = InetAddress.getByName("192.168.2.115");
+        try{
+            InetAddress ip=InetAddress.getLocalHost();
+           // InetAddress ip = InetAddress.getByName("192.168.2.115");
 
             buffer =message.getBytes();
             DatagramPacket packetsend=new DatagramPacket(buffer,buffer.length,ip,Constants.PORT);
@@ -61,7 +62,7 @@ public class UDPHelligkeitClient {
         //while (a>0)
         //{
             //String line = helligkeitErzeugt();
-            for(int i=0;i<1000000;i++)
+            for(int i=0;i<10;i++)
             {
                 line="Werte  Helligkeit : " + String.valueOf(i+1);
                 send(line);

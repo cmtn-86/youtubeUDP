@@ -71,9 +71,9 @@ public class UDPTempetarutClient {
     {
        try{
 
-         //  InetAddress ip=InetAddress.getLocalHost();
-          // InetAddress ip=InetAddress.getLocalHost("localhost");
-           InetAddress ip = InetAddress.getByName("192.168.2.115");
+           InetAddress ip=InetAddress.getLocalHost();
+        //   InetAddress ip=InetAddress.getLocalHost("localhost");
+          // InetAddress ip = InetAddress.getByName("192.168.2.115");
 
            buffer =message.getBytes();
        DatagramPacket packetsend=new DatagramPacket(buffer,buffer.length,ip,Constants.PORT);
@@ -102,7 +102,7 @@ public class UDPTempetarutClient {
             }
             a--;
         }*/
-        for(int i=0;i<1000000;i++)
+        for(int i=0;i<60;i++)
         {
             line="Werte Temperatur" + String.valueOf(i+1);
             send(line);

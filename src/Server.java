@@ -1,4 +1,3 @@
-import com.sun.source.tree.WhileLoopTree;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -40,13 +39,23 @@ public class Server {
 
     private void connecting()
     {
+
+
         while(true)
         {
+
             String data=receiveData();
             log("Client : " +"IPadd " + receiverPacket.getAddress().toString()
                     + " port " + receiverPacket.getPort()
                     + " Data length " + receiverPacket.getLength()
                     + " : " +data);
+
+
+
+   //sql lite call
+           SQLiteJDBCDriverConnection sqlLiteCall = new SQLiteJDBCDriverConnection();
+           sqlLiteCall.insertServer(receiverPacket.getAddress().toString(), receiverPacket.getPort(),receiverPacket.getLength(), data);
+
             if(data.equals(Constants.Stop))
             {
                 log("Client say bye... Exiting");
