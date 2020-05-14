@@ -30,7 +30,7 @@ public class SQLiteJDBCDriverConnection {
      */
     public void insertServer(String client_name, int port,int data_length, String data) {
         // TODO  date buradan eklensin
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ");
         String date = sdf.format(new Date());
         String sql = "INSERT INTO Server(client_name,port,data_length,data,received_date) VALUES(?,?,?,?,?)";
 
